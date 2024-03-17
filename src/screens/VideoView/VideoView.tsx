@@ -1,5 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import { Dimensions, FlatList, SafeAreaView, Text, View } from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 import axios from 'axios';
 
 import { PEXELS_API_KEY } from '@env';
@@ -43,7 +50,7 @@ export const VideoView: FC = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: 'black' }}>
       <FlatList
         data={videos}
         keyExtractor={item => item.id.toString()}
@@ -59,10 +66,32 @@ export const VideoView: FC = () => {
             }}>
             <Video
               source={{ uri: item.video_files[0].link }}
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: '100%', height: '100%', position: 'absolute' }}
               repeat={true}
               paused={selectedIndex == index ? false : true}
             />
+            <View
+              style={{
+                position: 'absolute',
+                zIndex: 1,
+                bottom: 100,
+                left: 8,
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 10,
+              }}>
+              <Image
+                source={{ uri: item.image }}
+                width={36}
+                height={36}
+                style={{
+                  borderRadius: 20,
+                }}
+              />
+              <Text style={{ fontSize: 15, color: 'white' }}>
+                {item?.user?.name}
+              </Text>
+            </View>
           </View>
         )}
       />
