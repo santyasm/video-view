@@ -10,6 +10,7 @@ const { width, height } = Dimensions.get('window');
 
 export const VideoView: FC = () => {
   const [videos, setVideos] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const fetchVideos = async () => {
     try {
@@ -35,6 +36,12 @@ export const VideoView: FC = () => {
     fetchVideos();
   }, []);
 
+  const onScroll = ({ nativeEvent }) => {
+    const index = nativeEvent.contentOffset.y.toFixed(0) / height;
+
+    setSelectedIndex(index.toFixed(0));
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <FlatList
@@ -42,18 +49,19 @@ export const VideoView: FC = () => {
         keyExtractor={item => item.id.toString()}
         style={{ flex: 1 }}
         pagingEnabled={true}
-        renderItem={({ item }) => (
+        onScroll={onScroll}
+        renderItem={({ item, index }) => (
           <View
             style={{
               width: width,
               height: height,
+              backgroundColor: '#000',
             }}>
             <Video
               source={{ uri: item.video_files[0].link }}
               style={{ width: '100%', height: '100%' }}
               repeat={true}
-              controls={true}
-              paused={true}
+              paused={selectedIndex == index ? false : true}
             />
           </View>
         )}
