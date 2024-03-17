@@ -18,11 +18,13 @@ const { width, height } = Dimensions.get('window');
 export const VideoView: FC = () => {
   const [videos, setVideos] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        `${PEXELS_API_URL}?query=oceans&orientation=portrait&size=small&per_page=50&page=1&`,
+        `${PEXELS_API_URL}?query=oceans&orientation=portrait&size=small&per_page=10&page=${currentPage}`,
         {
           headers: {
             Authorization: `${PEXELS_API_KEY}`,
@@ -32,8 +34,13 @@ export const VideoView: FC = () => {
 
       const data = response.data;
 
-      console.log(JSON.stringify(data, null, 2));
-      setVideos(data.videos);
+      setTotalPages(Math.ceil(data.total_results / 10));
+
+      if (currentPage > 1) {
+        setVideos(prevVideos => [...prevVideos, ...data.videos]);
+      } else {
+        setVideos(data.videos);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +48,13 @@ export const VideoView: FC = () => {
 
   useEffect(() => {
     fetchVideos();
-  }, []);
+  }, [currentPage]);
+
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   const onScroll = ({ nativeEvent }) => {
     const index = nativeEvent.contentOffset.y.toFixed(0) / height;
@@ -57,6 +70,9 @@ export const VideoView: FC = () => {
         style={{ flex: 1 }}
         pagingEnabled={true}
         onScroll={onScroll}
+        onEndReached={nextPage}
+        onEndReachedThreshold={2}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
           <View
             style={{
@@ -69,13 +85,14 @@ export const VideoView: FC = () => {
               style={{ width: '100%', height: '100%', position: 'absolute' }}
               repeat={true}
               paused={selectedIndex == index ? false : true}
+              resizeMode="cover"
             />
             <View
               style={{
                 position: 'absolute',
                 zIndex: 1,
-                bottom: 100,
-                left: 8,
+                bottom: 60,
+                left: 16,
                 flexDirection: 'row',
                 alignItems: 'center',
                 gap: 10,
@@ -88,7 +105,7 @@ export const VideoView: FC = () => {
                   borderRadius: 20,
                 }}
               />
-              <Text style={{ fontSize: 15, color: 'white' }}>
+              <Text style={{ fontSize: 15, color: 'white', fontWeight: '600' }}>
                 {item?.user?.name}
               </Text>
             </View>
