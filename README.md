@@ -1,79 +1,93 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🎥 VideoView
 
-# Getting Started
+Um aplicativo de **visualização de vídeos estilo TikTok** feito em **React Native**, que utiliza a [API do Pexels](https://www.pexels.com/api/) para exibir vídeos em formato vertical.  
+O app suporta rolagem infinita, autoplay do vídeo atual e pausa automática dos demais.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+---
 
-## Step 1: Start the Metro Server
+## ✨ Funcionalidades
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- 🔄 Feed de vídeos com rolagem infinita
+- ▶️ Reproduz automaticamente o vídeo em destaque
+- ⏸️ Pausa os vídeos fora da tela
+- 📱 Suporte a iOS e Android
+- 🌊 Vídeos exibidos a partir da API do Pexels
 
-To start Metro, run the following command from the _root_ of your React Native project:
+---
 
-```bash
-# using npm
-npm start
+## 🛠️ Tecnologias utilizadas
 
-# OR using Yarn
-yarn start
-```
+- [React Native](https://reactnative.dev/)  
+- [TypeScript](https://www.typescriptlang.org/)  
+- [React Native Video](https://github.com/react-native-video/react-native-video)  
+- [Axios](https://axios-http.com/)  
+- [Dotenv](https://github.com/goatandsheep/react-native-dotenv)  
 
-## Step 2: Start your Application
+---
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
+## 📂 Estrutura de pastas
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+video-view
+│── android/              # Projeto Android
+│── ios/                  # Projeto iOS
+│── src/                  # Código principal
+│   ├── @types/           # Tipagens
+│   ├── assets/           # Imagens
+│   ├── screens/          # Telas do app
+│   └── services/         # Configuração de APIs
+│── .env                  # Variáveis de ambiente
+│── package.json          # Dependências e scripts
+│── App.tsx               # Entrada principal
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## ⚙️ Como rodar o projeto
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+Clone este repositório:
+```bash
+git clone https://github.com/seu-usuario/video-view.git
+cd video-view
+````
 
-## Step 3: Modifying your App
+Instale as dependências:
 
-Now that you have successfully run the app, let's modify it.
+```bash
+npm install 
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+ou
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+yarn install
+````
 
-## Congratulations! :tada:
 
-You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+Configure o arquivo .env:
+```bash
+PEXELS_API_KEY=YOUR_PEXELS_API_KEY
+```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+Rode no emulador ou dispositivo físico:
 
-# Troubleshooting
+```bash
+yarn android   # para Android
+yarn ios       # para iOS
+```
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## 📱 Screenshots
+Feed de Vídeos	Exemplo de Usuário
 
-# Learn More
+<table>
+  <tr>
+    <td><img src="src/assets/screenshots/screenshot1.png" width="300"/></td>
+    <td><img src="src/assets/screenshots/screenshot2.png" width="300"/></td>
+  </tr>
+</table>
 
-To learn more about React Native, take a look at the following resources:
+## 🎬 Vídeo Demo
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+<img src="./src/assets/screenshots/demo.gif" width="300" />
+
+
+---
+
+Feito com 💜 por Yasmin Santana Santos
