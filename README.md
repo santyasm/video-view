@@ -1,7 +1,8 @@
 # 🎥 VideoView
 
-Um aplicativo de **visualização de vídeos estilo TikTok** feito em **React Native**, que utiliza a [API do Pexels](https://www.pexels.com/api/) para exibir vídeos em formato vertical.  
-O app suporta rolagem infinita, autoplay do vídeo atual e pausa automática dos demais.
+Um aplicativo desenvolvido em **React Native** para **visualização de vídeos curtos** no formato vertical.  
+
+O app faz uso da [API do Pexels](https://www.pexels.com/api/) para buscar e exibir os vídeos, com suporte a rolagem infinita, autoplay do vídeo atual e pausa automática dos demais.
 
 ---
 
